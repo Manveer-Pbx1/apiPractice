@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memes Generator</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+        rel="stylesheet"
+    />
+</head>
+<body>
+<div class="container">
+    <!-- <img src="demo-meme.jpg" alt="meme" id="meme" /> -->
+    <h3 id="activity-title">Random Activity</h3>
+    <button id="get-activity-btn" onclick="getActivity()">Get Activity</button>
+</div>
+<!-- Axios Script -->
+
+<!-- Custom Script -->
+<script>
+    async function getActivity() {
+        try {
+            const response = await fetch("http://www.boredapi.com/api/activity?type=recreational");
+            const data = await response.json();
+            
+            const activityTitle = document.getElementById('activity-title');
+            activityTitle.innerText = data.activity;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+</script>
+</body>
+</html>

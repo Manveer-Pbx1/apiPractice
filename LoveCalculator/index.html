@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator</title>
+</head>
+<body>
+    <div id="lovePercentage"></div>
+    <label for="first">Enter your name: </label>
+    <input type="text" id="first">
+    <label for="second" id="second">Enter your name:</label>
+    <input type="text">
+    <button onclick="fetchLovePercentage()">Calculate</button>
+    <script>
+        async function fetchLovePercentage() {
+            const first = document.getElementById('first');
+            const second = document.getElementById('second');
+            const firstValue = first.value;
+            const secondValue = second.value;
+            const url = `https://love-calculator.p.rapidapi.com/getPercentage?sname=${firstValue}&fname=${secondValue}`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '76080cffb1mshf78d58abbdf03a3p1ec5e0jsnb001ab790023',
+                    'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com'
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                const lovePercentage = data.percentage;
+                document.getElementById('lovePercentage').innerText = `Love Percentage: ${lovePercentage}%`;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchLovePercentage();
+    </script>
+</body>
+</html>

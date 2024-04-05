@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bionic Reading</title>
+</head>
+<body>
+    <h1>Bionic Reading</h1>
+    <div id="output"></div>
+
+    <script>
+        async function apiReading() {
+    const url = "https://kodessphere-api.vercel.app/devices"; // Specify the endpoint
+    const data = {
+        // Add your data here if needed
+        teamid: "your_team_id",
+        device: "your_device_type",
+        value: 1 // Example value
+    };
+
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Specify JSON content type
+        },
+        body: JSON.stringify(data) // Convert data to JSON string
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const responseData = await response.json(); // Parse response JSON
+        console.log(responseData); // Log response data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+apiReading();
+
+    </script>
+</body>
+</html>
